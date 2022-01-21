@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehackio/Pages/Main_pages.dart';
+import 'package:flutter/services.dart';
+import 'package:puzzlehackio/Pages/main_screen.dart';
 
-void main() => runApp(const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainScreen(),
-    ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: MainScreen(),
+  ));
+}
