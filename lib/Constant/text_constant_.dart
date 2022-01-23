@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 var pzText1 = GoogleFonts.poppins(fontSize: 12, color: Colors.white);
 
+var judul = GoogleFonts.rancho(fontSize: 20, color: const Color(0xfff4b83d7));
+
 var pzText1Bold = GoogleFonts.poppins(
     fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
 
