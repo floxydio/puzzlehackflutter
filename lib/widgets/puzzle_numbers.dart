@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:puzzlehackio/widgets/footage_.dart';
-import 'package:puzzlehackio/widgets/menu_view.dart';
-import 'package:puzzlehackio/widgets/my_title.dart';
+import 'package:puzzlehackio/ui/footage_.dart';
+import 'package:puzzlehackio/ui/menu_view.dart';
+import 'package:puzzlehackio/ui/my_title.dart';
 
 // ignore: must_be_immutable
 class PuzzleNumbers extends StatefulWidget {
@@ -16,9 +16,19 @@ class PuzzleNumbers extends StatefulWidget {
 }
 
 class _PuzzleNumbersState extends State<PuzzleNumbers> {
+  var numbers = [];
   int move = 0;
   int secondsPassed = 0;
   bool whenStarted = false;
+  bool whenFinished(List list) {
+    int prev = list.first;
+    for (var i = 1; i < list.length - 1; i++) {
+      int next = list[i];
+      if (prev > next) return false;
+      prev = next;
+    }
+    return true;
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -63,6 +73,50 @@ class _PuzzleNumbersState extends State<PuzzleNumbers> {
                                       widget.numbers[index];
                                   widget.numbers[index] = 0;
                                 });
+                              }
+                              if (whenFinished(numbers)) {
+                                whenStarted = false;
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0)),
+                                        child: SizedBox(
+                                          height: 200,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(30.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  "You Win!!",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
+                                                SizedBox(
+                                                  width: 220.0,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Text(
+                                                      "Close",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    });
                               }
                               // print(move);
                             },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'time_.dart';
-import 'reset_button.dart';
-import 'move_.dart';
+import 'package:puzzlehackio/widgets/move_.dart';
+import 'package:puzzlehackio/widgets/reset_button.dart';
+import 'package:puzzlehackio/widgets/time_.dart';
 
 // ignore: must_be_immutable
 class Menu extends StatelessWidget {
